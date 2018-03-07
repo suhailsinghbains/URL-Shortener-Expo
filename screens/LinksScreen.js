@@ -1,27 +1,48 @@
 import React from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+import {
+  Image,
+  Platform,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { WebBrowser } from 'expo';
+
+import { MonoText } from '../components/StyledText';
 
 export default class LinksScreen extends React.Component {
   static navigationOptions = {
-    title: 'Links',
+    header: null,
   };
+  state = {
+    data : []
+  };
+  componentWillMount = async () => {
+    try {
+      const response = await fetch('https://murmuring-brushlands-69386.herokuapp.com/new/TestLink', {
+        method: 'POST'
+      });
+      const data = await response.json()
+      this.setState(data)
+    } catch (e) {
+    } finally {
+    }
+  }
 
   render() {
     return (
-      <ScrollView style={styles.container}>
-        {/* Go ahead and delete ExpoLinksView and replace it with your
-           * content, we just wanted to provide you with some helpful links */}
-        <ExpoLinksView />
-      </ScrollView>
+      <View style={styles.center}>
+        <Text>{JSON.stringify(this.state)}</Text>
+      </View>
     );
   }
 }
-
 const styles = StyleSheet.create({
-  container: {
+  center: {
     flex: 1,
-    paddingTop: 15,
-    backgroundColor: '#fff',
-  },
-});
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+})

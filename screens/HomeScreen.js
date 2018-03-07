@@ -19,17 +19,17 @@ export default class HomeScreen extends React.Component {
   state = {
     data : []
   };
- componentWillMount = async () => {
-   try {
-     const response = await fetch('https://murmuring-brushlands-69386.herokuapp.com/find/1', {
-       method: 'GET'
-     });
-     const data = await response.json()
-     this.setState(data)
-   } catch (e) {
-   } finally {
-   }
- }
+  componentWillMount = async () => {
+    try {
+      const response = await fetch('https://murmuring-brushlands-69386.herokuapp.com/find/1', {
+        method: 'GET'
+      });
+      const data = await response.json()
+      this.setState(data)
+    } catch (e) {
+    } finally {
+    }
+  }
 
   render() {
     return (
@@ -39,10 +39,10 @@ export default class HomeScreen extends React.Component {
     );
   }
 }
-  const styles = StyleSheet.create({
-    center: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-    }
-  })
+const styles = StyleSheet.create({
+  center: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
+})
