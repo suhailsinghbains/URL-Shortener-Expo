@@ -12,7 +12,7 @@ import { WebBrowser } from 'expo';
 
 import { MonoText } from '../components/StyledText';
 
-export default class HomeScreen extends React.Component {
+export default class Find_Real_URL extends React.Component {
   static navigationOptions = {
     header: null,
   };
@@ -20,8 +20,9 @@ export default class HomeScreen extends React.Component {
     data : []
   };
   componentWillMount = async () => {
+    Compressed_URL = '29';
     try {
-      const response = await fetch('https://murmuring-brushlands-69386.herokuapp.com/find/1', {
+      const response = await fetch('https://murmuring-brushlands-69386.herokuapp.com/find/' + Compressed_URL, {
         method: 'GET'
       });
       const data = await response.json()

@@ -5,16 +5,16 @@ import { TabNavigator, TabBarBottom } from 'react-navigation';
 
 import Colors from '../constants/Colors';
 
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
+import URL_Shorten from '../screens/URL_Shorten';
+import Find_Real_URL from '../screens/Find_Real_URL';
 
 export default TabNavigator(
   {
-    Home: {
-      screen: HomeScreen,
+    URL_Shortener: {
+      screen: URL_Shorten,
     },
-    Links: {
-      screen: LinksScreen,
+    Find: {
+      screen: Find_Real_URL,
     }
   },
   {
@@ -23,15 +23,15 @@ export default TabNavigator(
         const { routeName } = navigation.state;
         let iconName;
         switch (routeName) {
-          case 'Home':
-            iconName =
-              Platform.OS === 'ios'
-                ? `ios-information-circle${focused ? '' : '-outline'}`
-                : 'md-information-circle';
-            break;
-          case 'Links':
+          case 'URL_Shortener':
             iconName = Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link';
             break;
+            case 'Find':
+              iconName =
+                Platform.OS === 'ios'
+                  ? `ios-information-circle${focused ? '' : '-outline'}`
+                  : 'md-information-circle';
+              break;
         }
         return (
           <Ionicons
