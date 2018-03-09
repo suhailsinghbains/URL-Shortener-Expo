@@ -7,7 +7,8 @@ import {
   Text,
   TouchableOpacity,
   View,
-  Button
+  Button,
+  TextInput
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
@@ -18,7 +19,8 @@ export default class URL_Shorten extends React.Component {
     header: null,
   };
   state = {
-    data : ["New URL Here"]
+    data : ["New URL Here"],
+    text: 'WEE'
   };
   render() {
     Loading ={
@@ -42,15 +44,19 @@ export default class URL_Shorten extends React.Component {
       }
     }
     return (
-      <View style={styles.center}>
+      <h1>
+        <TextInput
+          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
+          value={this.state.text}>
+        </TextInput>
         <Button
-        onPress={New_URL}
-        title="Shorten Me"
-        color="#841584"
-        accessibilityLabel="Learn more about this purple button"
+          onPress={New_URL}
+          title="Shorten Me"
+          color="#841584"
+          accessibilityLabel="Learn more about this purple button"
         />
         <Text>{this.state.data.toString()}</Text>
-      </View>
+      </h1>
     );
   }
 }
