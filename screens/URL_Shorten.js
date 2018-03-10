@@ -8,7 +8,8 @@ import {
   TouchableOpacity,
   View,
   Button,
-  TextInput
+  TextInput,
+  Clipboard
 } from 'react-native';
 import { WebBrowser } from 'expo';
 
@@ -19,8 +20,8 @@ export default class URL_Shorten extends React.Component {
     header: null,
   };
   state = {
-    data : ["New URL Here"],
-    text: 'WEE'
+    data : ["New URL will be displayed here"],
+    text: 'Enter Url here'
   };
   render() {
     Loading ={
@@ -28,7 +29,7 @@ export default class URL_Shorten extends React.Component {
     };
     New_URL = async () => {
       this.setState(Loading)
-      Real_URL = 'New Test';
+      Real_URL = this.state.text;
       URL = 'https://murmuring-brushlands-69386.herokuapp.com'
       try {
         const response = await fetch(URL +
@@ -38,32 +39,35 @@ export default class URL_Shorten extends React.Component {
         });
         data = await response.json()
         data.data = 'https://murmuring-brushlands-69386.herokuapp.com/' + data.data;
+        Clipboard.setString(data.data);
         this.setState(data)
       } catch (e) {
       } finally {
       }
     }
     return (
-      <h1>
-        <TextInput
-          style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-          value={this.state.text}>
-        </TextInput>
-        <Button
-          onPress={New_URL}
-          title="Shorten Me"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
-        />
+      <View
+        style={styles.center}>
+          <TextInput
+          onChangeText={(text) => this.setState({text})}
+          value={this.state.text}/>
+          <Button
+            onPress={New_URL}
+            title="Shorten Me"
+            color="#841584"
+            accessibilityLabel="Press the button to Shorten URL"
+          />
         <Text>{this.state.data.toString()}</Text>
-      </h1>
+      </View>
     );
   }
 }
 const styles = StyleSheet.create({
   center: {
     flex: 1,
+    height: 100,
+    padding: 20,
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   }
 })
